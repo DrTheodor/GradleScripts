@@ -4,7 +4,7 @@ buildscript {
 	
         maven {
             url = 'https://maven.minecraftforge.net'
-	}
+        }
         
         maven {
             url = 'https://maven.parchmentmc.org'
@@ -17,7 +17,8 @@ buildscript {
     
     dependencies {
         classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
+        
+        classpath 'org.spongepowered:mixingradle:0.7-SNAPSHOT'
         classpath 'org.parchmentmc:librarian:1.+'
     }
 }
@@ -27,7 +28,7 @@ apply plugin: 'org.parchmentmc.librarian.forgegradle'
 apply plugin: 'org.spongepowered.mixin'
 
 minecraft {
-	mixin {
+    mixin {
         add sourceSets.main, "${project.name}.refmap.json"
         config "${project.name}.mixins.json"
     }
@@ -87,5 +88,5 @@ mixin {
     add sourceSets.main, "${project.name}.refmap.json"
 }
 
-// Jar's manifest and reobfuscation.
+// Jar's reobfuscation.
 jar.finalizedBy 'reobfJar'
